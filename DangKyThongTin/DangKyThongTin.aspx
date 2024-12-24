@@ -5,92 +5,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style>
-        body {
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
-
-        .register {
-            background: white;
-            padding: 20px;
-            border: 1px solid blue;
-            text-align: center;
-            width: 800px;
-        }
-
-            .register h1 {
-                background-color: darkcyan;
-                color: black;
-                margin: -20px -20px 20px;
-                padding: 15px;
-                font-size: 32px;
-            }
-
-        input {
-            margin-top: 10px;
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-    </style>
+    <link href="Content\bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="register">
-            <h1>ĐĂNG KÝ THÔNG TIN</h1>
-            <div class="item">
-                <asp:Label runat="server" Text="Họ và tên:"></asp:Label>
-                <input id="txtHoTen" type="text" />
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Ngày sinh:"></asp:Label>
-                <input type="datetime-local" id="txtNgaySinh" runat="server" />
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Giới tính:"></asp:Label>
-                <asp:RadioButton ID="rdoNam" GroupName="GioiTinh" runat="server" Text="Nam" />
-                <asp:RadioButton ID="rdoNu" GroupName="GioiTinh" runat="server" Text="Nữ" />
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Trình độ:"></asp:Label>
-                <asp:DropDownList ID="DropDownList1" runat="server">
-                    <asp:ListItem Text="Sơ cấp" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Trung cấp" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Cao cấp" Value=""></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Nghề nghiệp:"></asp:Label>
-                <asp:ListBox ID="ListBox1" runat="server">
-                    <asp:ListItem Text="Kỹ sư" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Bác sĩ" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Công nhân" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Lập trình viên" Value=""></asp:ListItem>
-                </asp:ListBox>
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Hình ảnh:"></asp:Label>
-                <asp:FileUpload ID="FileUpload1" runat="server" />
-            </div>
-            <div class="item">
-                <asp:Label runat="server" Text="Sở thích:"></asp:Label>
-                <asp:CheckBoxList ID="CheckBoxList1" runat="server">
-                    <asp:ListItem Text="Chơi game" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Nghe nhạc" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Xem phim" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Du lịch" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Mua sắm" Value=""></asp:ListItem>
-                </asp:CheckBoxList>
-            </div>
-            <div class="actions">
-                <asp:Button ID="btnSubmit" runat="server" Text="Gửi" />
-                <asp:Button ID="btnReset" runat="server" Text="Làm lại" />
+        <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="w-50 p-4 border rounded shadow-sm">
+                <h2 class="text-center mb-4">Đăng Ký Thông Tin</h2>
+
+                <!-- Họ Tên -->
+                <div class="mb-3">
+                    <asp:Label ID="lblHoTen" runat="server" Text="Họ Tên:" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtHoTen" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <!-- Ngày Sinh -->
+                <div class="mb-3">
+                    <asp:Label ID="lblNgaySinh" runat="server" Text="Ngày Sinh:" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtNgaySinh" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                </div>
+
+                <!-- Giới Tính -->
+                <div class="mb-3">
+                    <asp:Label ID="lblGioiTinh" runat="server" Text="Giới Tính:" CssClass="form-label"></asp:Label>
+                    <asp:RadioButton ID="rdoNam" GroupName="GioiTinh" runat="server" Text="Nam" />
+                    <asp:RadioButton ID="rdoNu" GroupName="GioiTinh" runat="server" Text="Nữ" />
+                </div>
+
+                <!-- Trình Độ -->
+                <div class="mb-3">
+                    <asp:Label ID="lblTrinhDo" runat="server" Text="Trình Độ:" CssClass="form-label"></asp:Label>
+                    <asp:DropDownList ID="ddlTrinhDo" runat="server" CssClass="form-select"></asp:DropDownList>
+                </div>
+
+                <!-- Nghề Nghiệp -->
+                <div class="mb-3">
+                    <asp:Label ID="lblNgheNghiep" runat="server" Text="Nghề Nghiệp:" CssClass="form-label"></asp:Label>
+                    <asp:ListBox ID="lstNgheNghiep" runat="server" SelectionMode="Multiple" CssClass="form-control" size="5"></asp:ListBox>
+                </div>
+
+                <!-- Sở Thích -->
+                <div class="mb-3">
+                    <asp:Label ID="lblSoThich" runat="server" Text="Sở Thích:" CssClass="form-label"></asp:Label>
+                    <asp:CheckBoxList ID="cblSoThich" runat="server" CssClass="form-check"></asp:CheckBoxList>
+                </div>
+
+                <!-- Tải Hình -->
+                <div class="mb-3">
+                    <asp:Label ID="lblHinh" runat="server" Text="Tải Hình:" CssClass="form-label"></asp:Label>
+                    <asp:FileUpload ID="fuHinh" runat="server" CssClass="form-control"></asp:FileUpload>
+                </div>
+
+                <!-- Buttons -->
+                <div class="mb-3">
+                    <asp:Button ID="btnGui" runat="server" Text="Gửi" OnClick="btnGui_Click" CssClass="btn btn-primary w-100"></asp:Button>
+                    <asp:Button ID="btnReset" runat="server" Text="Làm Lại" OnClick="btnReset_Click" CssClass="btn btn-secondary w-100 mt-2"></asp:Button>
+                </div>
+
+                <!-- Result -->
+                <div class="result mt-3">
+                    <asp:Label ID="lblResult" runat="server" Text="" CssClass="form-text"></asp:Label>
+                </div>
             </div>
         </div>
     </form>
