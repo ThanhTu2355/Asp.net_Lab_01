@@ -26,8 +26,25 @@ namespace DangKyThongTin
         {
             string tenbanh = ddlLoaiBanh.SelectedItem.Text;
             int soluong = int.Parse(txtSoLuong.Text);
-            string kq = string.Format("{0}  ({1})", tenbanh, soluong);
-            lstBanh.Items.Add(kq);
+            //Kiểm tra tồn tại trong lstBanh
+            bool find = false;
+            foreach(ListItem item in lstBanh.Items)
+            {
+                if (item.Text.StartsWith(tenbanh))
+                {
+                    find = true;
+                    //cập nhật lại số lượng
+                    string[] detail = item.Text.Split(new char[] {'(',')'});
+                    soluong += int.Parse(detail[1]);
+                    item.Text = $"{tenbanh} {soluong}";
+                }
+            }
+
+            if (!find)
+            {
+                string kq = string.Format("{0}  ({1})", tenbanh, soluong);
+                lstBanh.Items.Add(kq);
+            }
         }
 
         protected void btnRemove_Click(object sender, ImageClickEventArgs e)
@@ -68,7 +85,7 @@ namespace DangKyThongTin
                 kq += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", tenBanh, soLuong);
             }
 
-            kq += "</tbody></table>";
+            kq += "</tbody></table>"; 
             kq += "</div>";
 
             // Hồi đáp thông tin đơn hàng
